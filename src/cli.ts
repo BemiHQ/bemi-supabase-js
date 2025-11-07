@@ -71,7 +71,7 @@ const generateMigrationFile = async () => {
 
 const program = new Command();
 
-program.name("bemi").description("CLI to Bemi utilities").version("0.2.8");
+program.name("bemi").description("CLI to Bemi utilities").version("0.1.0");
 
 program.command("migration new").description("Create a new Bemi migration file for Supabase").action(generateMigrationFile);
 

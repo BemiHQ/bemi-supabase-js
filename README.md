@@ -107,19 +107,19 @@ Check out our [Supabase JS docs](https://docs.bemi.io/orms/supabase-js) for more
 
 ## Architecture overview
 
-Bemi is designed to be lightweight and secure. It takes a practical approach to achieving the benefits of [event sourcing](https://martinfowler.com/eaaDev/EventSourcing.html) without requiring rearchitecting existing code, switching to highly specialized databases, or using unnecessary git-like abstractions on top of databases. We want your system to work the way it already does with your existing database to allow keeping things as simple as possible.
+Bemi is designed to be lightweight and secure. It takes a practical approach to achieving the benefits of [event sourcing](https://blog.bemi.io/rethinking-event-sourcing/) without requiring rearchitecting existing code, switching to highly specialized databases, or using unnecessary git-like abstractions on top of databases. We want your system to work the way it already does with your existing database to allow keeping things as simple as possible.
 
 Bemi plugs into both the database and application levels, ensuring 100% reliability and a comprehensive understanding of every change.
 
-On the database level, Bemi securely connects to PostgreSQL's [Write-Ahead Log](https://www.postgresql.org/docs/current/wal-intro.html) and implements [Change Data Capture](https://en.wikipedia.org/wiki/Change_data_capture). This allows tracking even the changes that get triggered via direct SQL.
+On the database level, Bemi securely connects to PostgreSQL's [Write-Ahead Log](https://www.postgresql.org/docs/current/wal-intro.html)'s and implements [Change Data Capture](https://blog.bemi.io/cdc/). This allows tracking even the changes that get triggered via direct SQL.
 
-On the application level, this package automatically passes application context by using [Database Functions and RPC](https://supabase.com/docs/guides/database/functions) to the replication logs to enhance the low-level database changes. For example, information about a user who made a change, an API endpoint where the change was triggered, a worker name that automatically triggered database changes, etc.
+On the application level, this package automatically passes application context to the replication logs to enhance the low-level database changes. For example, information about a user who made a change, an API endpoint where the change was triggered, a worker name that automatically triggered database changes, etc.
 
 Bemi workers then stitch the low-level data with the application context and store this information in a structured easily queryable format, as depicted below:
 
 ![bemi-architechture](https://docs.bemi.io/img/architecture.png)
 
-The cloud solution includes worker ingesters, queues for fault tolerance, and an automatically scalable cloud-hosted PostgreSQL. Bemi currently doesn't support a self hosted option, but [contact us](mailto:hi@bemi.io) if this is required.
+The cloud solution includes worker ingesters, queues for fault tolerance, and a serverless PostgreSQL. If you are interested in running a self-hosted version yourself, see our [self-hosting docs](https://docs.bemi.io/self-hosting).
 
 ## License
 
